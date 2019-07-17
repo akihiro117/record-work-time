@@ -9,6 +9,14 @@ module.exports = {
       {
         test: /\.ts$/,
         use: 'ts-loader'
+      },
+      // bootstarpを適用するための設定。
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
   },
