@@ -10,7 +10,29 @@
   <body>
     <h3 align="center">RecoWork! - 作業を記録しよう -</h3>
     <div align="center">
-      <button type="button" class="btn btn-primary"><span>作業開始</span></button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">
+        <span>作業開始</span>
+      </button>
+      <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div align="center">
+                <h5 class="modal-title" id="label1">今からする作業を入力してね</h5>
+              </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="text" placeholder="今から何する？">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 
