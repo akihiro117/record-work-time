@@ -6,7 +6,9 @@ import 'bootstrap';
 
 import { sample } from './operate-time';
 
-function mysample() {
-  sample();
+let workStartBtn = document.getElementById('work-name-btn');
+if (workStartBtn != null) {
+  workStartBtn.addEventListener('click', () => {
+    alert("test");
+  }, false);
 }
-
