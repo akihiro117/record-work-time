@@ -10,18 +10,41 @@ document.addEventListener('DOMContentLoaded', () => {
 }, false);
 
 function startCount(): void {
+
   let workStartBtn = document.getElementById('work-start-btn');
   if (workStartBtn != null) {
+    let numClicked = 0;
+    let count = 0;
+    let timer: any;
     workStartBtn.addEventListener('click', () => {
+      numClicked++;
       if (workStartBtn != null) {
-        workStartBtn.innerHTML = '停止';
-        workStartBtn.classList.add('btn-danger');
-        workStartBtn.classList.remove('btn-primary');
+        if (numClicked % 2 == 1) {
+          workStartBtn.innerHTML = '停止';
+          workStartBtn.classList.add('btn-danger');
+          workStartBtn.classList.remove('btn-primary');
+        } else {
+          workStartBtn.innerHTML = '作業開始';
+          workStartBtn.classList.remove('btn-danger');
+          workStartBtn.classList.add('btn-primary');
+        }
+
+        let secElm = document.getElementById('work-sec');
+        if (numClicked % 2 != 0) {
+          timer = setInterval(() => {
+            count++;
+            if (secElm != null) {
+              secElm.innerHTML = ('0' + String(count)).slice(-2);
+            }
+          }, 1000);
+        } else {
+          clearInterval(timer);
+        }
       }
-      countSec();
     });
   }
 };
+
 
 function countSec(): void {
   let secElm = document.getElementById('work-sec');
