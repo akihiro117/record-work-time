@@ -3,35 +3,39 @@
 
   <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="./dist/main.js"></script>
+    <script type="text/javascript" src="dist/main.js"></script>
     <title>RecoWork</title>
   </head>
 
   <body>
-    <h3 align="center">RecoWork! - 作業を記録しよう -</h3>
-    <div align="center">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">
-        <span>作業開始</span>
-      </button>
-      <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <div align="center">
-                <h5 class="modal-title" id="label1">今からする作業を入力してね</h5>
+    <div class="container">
+      <h3 align="center">RecoWork! - 作業を記録しよう -</h3>
+      <div align="center">
+        <h1><span>00</span>:<span>00</span><span>:</span><span id="work-sec">00</span></h1><br>
+        <button id="work-start-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">
+          作業開始
+        </button>
+        <!-- modal window -->
+        <!-- <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div align="center">
+                  <h5 class="modal-title" id="label1">今からする作業を入力してね</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <input id="work-name" type="text" placeholder="今から何する？">
-            </div>
-            <div class="modal-footer">
-              <button id="work-name-btn" type="button" class="btn btn-primary">OK</button>
+              <div class="modal-body">
+                <input id="work-name" type="text" placeholder="今から何する？">
+              </div>
+              <div class="modal-footer">
+                <button id="work-name-btn" type="button" class="btn btn-primary">OK</button>
+              </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>
