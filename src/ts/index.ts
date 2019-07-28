@@ -21,15 +21,7 @@ function startCount(): void {
     workStartBtn.addEventListener('click', () => {
       numClicked++;
       if (workStartBtn != null) {
-        if (numClicked % 2 == 1) {
-          workStartBtn.innerHTML = '一時停止';
-          workStartBtn.classList.add('btn-danger');
-          workStartBtn.classList.remove('btn-primary');
-        } else {
-          workStartBtn.innerHTML = '作業開始';
-          workStartBtn.classList.remove('btn-danger');
-          workStartBtn.classList.add('btn-primary');
-        }
+        changeBtn(numClicked, workStartBtn);
 
         let secElm = document.getElementById('work-sec');
         let minElm = document.getElementById('work-min');
@@ -63,6 +55,25 @@ function startCount(): void {
     });
   }
 };
+
+/**
+ * ボタンのクリック回数に応じて、ボタンの文字、styleを変更する。
+ * クリック回数が奇数の場合、表示文字を「一時停止」、styleをbtn-dangerに変更する。
+ * クリック回数が偶数の場合、表示文字を「再開」、styleをbtn-primaryに変更する。
+ * @param numClicked 作業開始ボタンのクリック回数。
+ * @param workStartBtn 作業開始ボタンのElementオブジェクト。
+ */
+function changeBtn(numClicked: number, workStartBtn: Element): void {
+  if (numClicked % 2 == 1) {
+    workStartBtn.innerHTML = '一時停止';
+    workStartBtn.classList.add('btn-danger');
+    workStartBtn.classList.remove('btn-primary');
+  } else {
+    workStartBtn.innerHTML = '再開';
+    workStartBtn.classList.add('btn-primary');
+    workStartBtn.classList.remove('btn-danger');
+  }
+}
 
 
 function countSec(): void {
