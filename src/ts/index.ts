@@ -1,3 +1,4 @@
+import { TimeCount } from './time-count';
 // Bootstrapのスタイルシート側の機能を読み込む
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -9,48 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
   startCount();
 }, false);
 
+/**
+ * タイマー処理を行う。
+ */
 function startCount(): void {
 
   let workStartBtn = document.getElementById('work-start-btn');
   if (workStartBtn != null) {
     let numClicked = 0;
-    let count = 0;
-    let minCount = 0;
-    let hourCount = 0;
-    let timer: any;
+    let timer = new TimeCount();
+
     workStartBtn.addEventListener('click', () => {
       numClicked++;
       if (workStartBtn != null) {
         changeBtn(numClicked, workStartBtn);
-
-        let secElm = document.getElementById('work-sec');
-        let minElm = document.getElementById('work-min');
-        let hourElm = document.getElementById('work-hour');
-        if (numClicked % 2 != 0) {
-          timer = setInterval(() => {
-            count++;
-            if (secElm != null) {
-              if (count == 60) {
-                count = 0;
-                minCount++;
-                if (minCount == 60) {
-                  minCount = 0;
-                  hourCount++;
-                }
-                if (minElm != null) {
-                  minElm.innerHTML = ('0' + String(minCount)).slice(-2);
-                }
-                if (hourElm != null) {
-                  hourElm.innerHTML = ('0' + String(hourCount)).slice(-2);
-                }
-              }
-              secElm.innerHTML = ('0' + String(count)).slice(-2);
-
-            }
-          }, 1000);
-        } else {
-          clearInterval(timer);
-        }
+        countTime(numClicked, timer);
       }
     });
   }
@@ -75,14 +49,38 @@ function changeBtn(numClicked: number, workStartBtn: Element): void {
   }
 }
 
+/**
+ * 経過時間をカウントアップする。
+ * @param numClicked ボタンがクリックされた回数。 
+ * @param timer setIntervalを入れるオブジェクト。
+ */
+function countTime(numClicked: number, timer: TimeCount): void {
+  if (numClicked % 2 != 0) {
+    let secElm = document.getElementById('work-sec');
+    let minElm = document.getElementById('work-min');
+    let hourElm = document.getElementById('work-hour');
 
-function countSec(): void {
-  let secElm = document.getElementById('work-sec');
-  let count = 0;
-  let timer = setInterval(() => {
-    count++;
-    if (secElm != null) {
-      secElm.innerHTML = ('0' + String(count)).slice(-2);
-    }
-  }, 1000);
+    timer.setTimer(setInterval(() => {
+      timer.setSecCount(timer.getSecCount() + 1);
+      if (secElm != null) {
+        if (timer.getSecCount() == 60) {
+          timer.setSecCount(0);
+          timer.setMinCount(timer.getMinCount() + 1);
+          if (timer.getMinCount() == 60) {
+            timer.setMinCount(0);
+            timer.setHourCount(timer.getHourCount() + 1);
+          }
+          if (minElm != null) {
+            minElm.innerHTML = ('0' + String(timer.getMinCount())).slice(-2);
+          }
+          if (hourElm != null) {
+            hourElm.innerHTML = ('0' + String(timer.getHourCount())).slice(-2);
+          }
+        }
+        secElm.innerHTML = ('0' + String(timer.getSecCount())).slice(-2);
+      }
+    }, 1000));
+  } else {
+    clearInterval(timer.getTimer());
+  }
 };
