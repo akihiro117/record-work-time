@@ -9,6 +9,11 @@ import 'bootstrap';
 
 // Htmlを読み込んだ後に実行。
 document.addEventListener('DOMContentLoaded', () => {
+  let workNameElm = document.getElementById('work-name');
+  if (workNameElm != null) {
+    workNameElm.focus();
+  }
+
   let stopwatch = new Stopwatch();
   // ストップウォッチ処理を行う。
   stopwatch.startTimerAfterClicking();
