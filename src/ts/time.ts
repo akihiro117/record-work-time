@@ -1,8 +1,8 @@
 /**
- * タイマーで扱うオブジェクトを提供するクラス。
+ * 時間関連の変数を提供するクラス。
  */
 
-export class TimeCount {
+export class Time {
   // 秒数。
   private secCount: number = 0;
 
@@ -12,7 +12,7 @@ export class TimeCount {
   private hourCount: number = 0;
 
   // setInterval()を保持する変数。
-  private timer: any;
+  private counter: any;
 
   public setSecCount(secCount: number): void {
     this.secCount = secCount;
@@ -38,11 +38,11 @@ export class TimeCount {
     return this.hourCount;
   }
 
-  public setTimer(timer: any): void {
-    this.timer = timer;
+  public setCounter(counter: any): void {
+    this.counter = counter;
   }
 
-  public getTimer(): any {
-    return this.timer;
+  public getCounter(): any {
+    return this.counter;
   }
 }

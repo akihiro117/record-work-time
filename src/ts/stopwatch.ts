@@ -1,28 +1,28 @@
 /**
- * タイマーの機能を提供する。
+ * ストップウォッチの機能を提供する。
  */
 
-import { TimeCount } from './time-count';
+import { Time } from './time';
 
-export class OperateTimes {
+export class Stopwatch {
 
   /**
- * タイマー処理を行う。
+ * ストップウォッチ処理を行う。
  */
   public startTimerAfterClicking(): void {
 
     let workStartBtn = document.getElementById('work-start-btn');
     if (workStartBtn != null) {
-      // クリックした回数。タイマーを停止するか開始するか判断するために使用する。
+      // クリックした回数。ストップウォッチを停止するか開始するか判断するために使用する。
       let numClicked = 0;
-      let timer = new TimeCount();
+      let timer = new Time();
 
       workStartBtn.addEventListener('click', () => {
         numClicked++;
         if (workStartBtn != null) {
           // ボタンの見た目を変える。
           this.changeBtn(numClicked, workStartBtn);
-          // タイマー処理を行う。
+          // ストップウォッチ処理を行う。
           this.countTime(numClicked, timer);
         }
       });
@@ -51,38 +51,38 @@ export class OperateTimes {
   /**
    * 経過時間をカウントアップする。
    * @param numClicked ボタンがクリックされた回数。 
-   * @param timer setIntervalを入れるオブジェクト。
+   * @param counter setIntervalを入れるオブジェクト。
    */
-  public countTime(numClicked: number, timer: TimeCount): void {
+  public countTime(numClicked: number, counter: Time): void {
     if (numClicked % 2 != 0) {
-      // ボタンを押した回数が奇数の場合は、タイマーを開始または再開する。
+      // ボタンを押した回数が奇数の場合は、ストップウォッチを開始または再開する。
       let secElm = document.getElementById('work-sec');
       let minElm = document.getElementById('work-min');
       let hourElm = document.getElementById('work-hour');
 
-      timer.setTimer(setInterval(() => {
-        timer.setSecCount(timer.getSecCount() + 1);
+      counter.setCounter(setInterval(() => {
+        counter.setSecCount(counter.getSecCount() + 1);
         if (secElm != null) {
-          if (timer.getSecCount() == 60) {
-            timer.setSecCount(0);
-            timer.setMinCount(timer.getMinCount() + 1);
-            if (timer.getMinCount() == 60) {
-              timer.setMinCount(0);
-              timer.setHourCount(timer.getHourCount() + 1);
+          if (counter.getSecCount() == 60) {
+            counter.setSecCount(0);
+            counter.setMinCount(counter.getMinCount() + 1);
+            if (counter.getMinCount() == 60) {
+              counter.setMinCount(0);
+              counter.setHourCount(counter.getHourCount() + 1);
             }
             if (minElm != null) {
-              minElm.innerHTML = ('0' + String(timer.getMinCount())).slice(-2);
+              minElm.innerHTML = ('0' + String(counter.getMinCount())).slice(-2);
             }
             if (hourElm != null) {
-              hourElm.innerHTML = ('0' + String(timer.getHourCount())).slice(-2);
+              hourElm.innerHTML = ('0' + String(counter.getHourCount())).slice(-2);
             }
           }
-          secElm.innerHTML = ('0' + String(timer.getSecCount())).slice(-2);
+          secElm.innerHTML = ('0' + String(counter.getSecCount())).slice(-2);
         }
       }, 1000));
     } else {
-      // ボタンを押した回数が偶数の場合は、タイマーを停止する。
-      clearInterval(timer.getTimer());
+      // ボタンを押した回数が偶数の場合は、ストップウォッチを停止する。
+      clearInterval(counter.getCounter());
     }
   };
 }

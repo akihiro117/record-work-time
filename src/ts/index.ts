@@ -1,4 +1,5 @@
-import { OperateTimes } from './operate-time';
+import { Stopwatch } from './stopwatch';
+
 // Bootstrapのスタイルシート側の機能を読み込む
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -8,8 +9,8 @@ import 'bootstrap';
 
 // Htmlを読み込んだ後に実行。
 document.addEventListener('DOMContentLoaded', () => {
-  let timer = new OperateTimes();
-  // タイマー処理を行う。
-  timer.startTimerAfterClicking();
+  let stopwatch = new Stopwatch();
+  // ストップウォッチ処理を行う。
+  stopwatch.startTimerAfterClicking();
 }, false);
 
