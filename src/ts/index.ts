@@ -19,3 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
   stopwatch.startTimerAfterClicking();
 }, false);
 
+
+
