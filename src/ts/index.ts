@@ -18,22 +18,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // ストップウォッチ処理を行う。
   stopwatch.startTimerAfterClicking();
 
-  addStopwatch(1);
+  addStopwatch();
 }, false);
 
-
-function addStopwatch(numStopwatch: number): void {
+function addStopwatch(): void {
   const STOPWATCH_ID_PREFIX = 'stopwatch';
   // 作業追加ボタン。
   let addWorkBtn = document.getElementById('work-add-btn');
   if (addWorkBtn != null) {
+    // 現在表示されている作業の数。
     let numWork = 1;
     addWorkBtn.addEventListener('click', () => {
 
       // stopwatchをクローンする。
       let stopwatchElm = document.getElementById('stopwatch1');
       if (stopwatchElm != null) {
+        // stopwatchのクローンを生成。
         let cloneStopwatch = stopwatchElm.cloneNode(true);
+
+        // cloneして生成した要素のvalueを初期化。
+        let cloneChildList = cloneStopwatch.childNodes[1];
+
         let stopwatchesElm = document.getElementById('stopwatches');
         if (stopwatchesElm != null) {
           stopwatchesElm.appendChild(cloneStopwatch);
