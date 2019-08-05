@@ -33,24 +33,17 @@ function addStopwatch(): void {
       let targetElm = $('#' + STOPWATCH_ID_PREFIX + numWork);
       numWork++;
       // stopwatchをを複製。
-      targetElm.clone().insertAfter(targetElm).attr('id', STOPWATCH_ID_PREFIX + numWork);
+      let cloneElm = targetElm.clone();
+      // 複製した要素を初期化。
+      cloneElm.find('#work-name').val('');
+      cloneElm.find('#work-hour').text('00');
+      cloneElm.find('#work-min').text('00');
+      cloneElm.find('#work-sec').text('00');
+      cloneElm.find('#work-start-btn').text('作業開始');
+      cloneElm.find('#work-start-btn').attr('class', 'btn btn-primary');
 
-
-      // // stopwatchをクローンする。
-      // let stopwatchElm = document.getElementById('stopwatch1');
-      // if (stopwatchElm != null) {
-      //   // stopwatchのクローンを生成。
-
-      //   let cloneStopwatch = stopwatchElm.cloneNode(true);
-
-      //   // cloneして生成した要素のvalueを初期化。
-      //   let cloneChildList = cloneStopwatch.childNodes[1];
-
-      //   let stopwatchesElm = document.getElementById('stopwatches');
-      //   if (stopwatchesElm != null) {
-      //     stopwatchesElm.appendChild(cloneStopwatch);
-      //   }
-      // }
+      // 要素をstopwatchの末尾に追加。
+      cloneElm.insertAfter(targetElm).attr('id', STOPWATCH_ID_PREFIX + numWork);
     });
   }
 
