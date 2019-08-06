@@ -1,3 +1,4 @@
+import { Stopwatch } from './stopwatch';
 /**
  * ストップウォッチの追加に関するクラス。
  */
@@ -22,22 +23,25 @@ export class AddStopwatch {
         // stopwatchをを複製。
         let cloneElm = targetElm.clone();
         // 複製した要素を初期化。
-        cloneElm.find('#work-name').val('');
-        cloneElm.find('#work-hour').text('00');
-        cloneElm.find('#work-min').text('00');
-        cloneElm.find('#work-sec').text('00');
-        cloneElm.find('#work-start-btn').text('作業開始');
-        cloneElm.find('#work-start-btn').attr('class', 'btn btn-primary');
+        cloneElm.find('#work-name' + (numWork - 1)).val('');
+        cloneElm.find('#work-hour' + (numWork - 1)).text('00');
+        cloneElm.find('#work-min' + (numWork - 1)).text('00');
+        cloneElm.find('#work-sec' + (numWork - 1)).text('00');
+        cloneElm.find('#work-start-btn' + (numWork - 1)).text('作業開始');
+        cloneElm.find('#work-start-btn' + (numWork - 1)).attr('class', 'btn btn-primary');
 
         // 複製した要素の子要素のIDを変更。
-        cloneElm.find('#work-name').attr('id', 'work-name' + numWork);
-        cloneElm.find('#work-hour').attr('id', 'work-hour' + numWork);
-        cloneElm.find('#work-min').attr('id', 'work-min' + numWork);
-        cloneElm.find('#work-sec').attr('id', 'work-sec' + numWork);
-        cloneElm.find('#work-start-btn').attr('id', 'work-start-btn' + numWork);
+        cloneElm.find('#work-name' + (numWork - 1)).attr('id', 'work-name' + numWork);
+        cloneElm.find('#work-hour' + (numWork - 1)).attr('id', 'work-hour' + numWork);
+        cloneElm.find('#work-min' + (numWork - 1)).attr('id', 'work-min' + numWork);
+        cloneElm.find('#work-sec' + (numWork - 1)).attr('id', 'work-sec' + numWork);
+        cloneElm.find('#work-start-btn' + (numWork - 1)).attr('id', 'work-start-btn' + numWork);
 
         // 要素をstopwatchの末尾に追加。
         cloneElm.insertAfter(targetElm).attr('id', STOPWATCH_ID_PREFIX + numWork);
+
+        let newStopwatch = new Stopwatch();
+        newStopwatch.startTimerAfterClicking(String(numWork));
       });
     }
   }

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let stopwatch = new Stopwatch();
   // ストップウォッチ処理を行う。
-  stopwatch.startTimerAfterClicking();
+  stopwatch.startTimerAfterClicking('1');
 
   // 追加ボタンをクリックするとストップウォッチを追加する。
   let addStopwatch = new AddStopwatch();

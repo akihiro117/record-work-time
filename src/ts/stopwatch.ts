@@ -9,9 +9,9 @@ export class Stopwatch {
   /**
  * ストップウォッチ処理を行う。
  */
-  public startTimerAfterClicking(): void {
+  public startTimerAfterClicking(stopwatchId: string): void {
 
-    let workStartBtn = document.getElementById('work-start-btn');
+    let workStartBtn = document.getElementById('work-start-btn' + stopwatchId);
     if (workStartBtn != null) {
       // クリックした回数。ストップウォッチを停止するか開始するか判断するために使用する。
       let numClicked = 0;
@@ -23,7 +23,7 @@ export class Stopwatch {
           // ボタンの見た目を変える。
           this.changeBtn(numClicked, workStartBtn);
           // ストップウォッチ処理を行う。
-          this.countTime(numClicked, timer);
+          this.countTime(numClicked, timer, stopwatchId);
         }
       });
     }
@@ -53,12 +53,12 @@ export class Stopwatch {
    * @param numClicked ボタンがクリックされた回数。 
    * @param counter setIntervalを入れるオブジェクト。
    */
-  public countTime(numClicked: number, counter: Time): void {
+  public countTime(numClicked: number, counter: Time, stopwatchId: string): void {
     if (numClicked % 2 != 0) {
       // ボタンを押した回数が奇数の場合は、ストップウォッチを開始または再開する。
-      let secElm = document.getElementById('work-sec');
-      let minElm = document.getElementById('work-min');
-      let hourElm = document.getElementById('work-hour');
+      let secElm = document.getElementById('work-sec' + stopwatchId);
+      let minElm = document.getElementById('work-min' + stopwatchId);
+      let hourElm = document.getElementById('work-hour' + stopwatchId);
 
       counter.setCounter(setInterval(() => {
         counter.setSecCount(counter.getSecCount() + 1);
