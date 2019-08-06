@@ -29,6 +29,13 @@ export class AddStopwatch {
         cloneElm.find('#work-start-btn').text('作業開始');
         cloneElm.find('#work-start-btn').attr('class', 'btn btn-primary');
 
+        // 複製した要素の子要素のIDを変更。
+        cloneElm.find('#work-name').attr('id', 'work-name' + numWork);
+        cloneElm.find('#work-hour').attr('id', 'work-hour' + numWork);
+        cloneElm.find('#work-min').attr('id', 'work-min' + numWork);
+        cloneElm.find('#work-sec').attr('id', 'work-sec' + numWork);
+        cloneElm.find('#work-start-btn').attr('id', 'work-start-btn' + numWork);
+
         // 要素をstopwatchの末尾に追加。
         cloneElm.insertAfter(targetElm).attr('id', STOPWATCH_ID_PREFIX + numWork);
       });
