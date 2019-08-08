@@ -9,7 +9,7 @@ export class Stopwatch {
   /**
  * ストップウォッチ処理を行う。
  */
-  public startTimerAfterClicking(stopwatchId: string): void {
+  public startStopwatchAfterClicking(stopwatchId: string): void {
 
     let workStartBtn = document.getElementById('work-start-btn' + stopwatchId);
     if (workStartBtn != null) {

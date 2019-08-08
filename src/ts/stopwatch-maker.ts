@@ -1,11 +1,12 @@
-import { Stopwatch } from './stopwatch';
 /**
  * ストップウォッチの追加に関するクラス。
  */
 
 import $ from 'jquery';
 
-export class AddStopwatch {
+import { Stopwatch } from './stopwatch';
+
+export class StopwatchMaker {
 
   /**
    * ストップウォッチを追加。
@@ -41,7 +42,8 @@ export class AddStopwatch {
         cloneElm.insertAfter(targetElm).attr('id', STOPWATCH_ID_PREFIX + numWork);
 
         let newStopwatch = new Stopwatch();
-        newStopwatch.startTimerAfterClicking(String(numWork));
+        // 追加した要素に対してクリック時にストップウォッチを起動する処理を行う。
+        newStopwatch.startStopwatchAfterClicking(String(numWork));
       });
     }
   }
