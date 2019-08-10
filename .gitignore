@@ -2,3 +2,8 @@ dev-memo.txt
 
 /node_modules
 /dist
+
+# scss
+src/scss/index.css
+src/scss/index.css.map
+.sass-cache
